@@ -1,8 +1,8 @@
-6c96801a0baf550afe6c9f39967848e9 *DESCRIPTION
+aa097eede1be3514caf070992c72c55b *DESCRIPTION
 f24924b893b6c6f80befd5522301419b *NAMESPACE
-5601355ad33e6ca591f6ca6a95d0d4cb *R/machQA.R
+0bcad3fe6aebcad151f60c3adbee6c45 *R/machQA.R
 2899c3fa3802a61289ba7823b375a2f7 *R/requirePackages.R
-d41d8cd98f00b204e9800998ecf8427e *R/versions.R
+b7ca58a4e456a0b2b582d8d5d897edd4 *R/versions.R
 0901ca50d461ec605605ff77b4a7cbc9 *inst/TS_files/ibm1minuteTopStudies.csv
 72d78c5927d657668bc9148a0292b306 *inst/TS_files/spy1minuteTopStudies.csv
 8761a7b556d18d5659c7c9c7d357210c *inst/base_files/ibm_base.csv

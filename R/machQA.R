@@ -21,18 +21,20 @@ mach.QA <-
         today <- gsub("-", "", Sys.Date())
 
         # Create new directory for today's output files
-        base_filepath = file.path(path.package("machQA"), "")
-        file_path <- paste(base_filepath, "/R_output_files/", today, "/", sep = "")
+        output_filepath <- paste(getwd(), "/R_output_files/", sep = "")
+        dir.create(output_filepath, showWarnings = FALSE)
+        file_path <- paste(output_filepath, today, "/", sep = "")
         dir.create(file_path, showWarnings = FALSE)
         
         # create TS dataframe and csv for ticker and day
-        full_file <- paste(base_filepath, "TS_files/", ticker, "1minuteTopStudies.csv", sep = "")
+        base_filepath = file.path(path.package("machQA"), "")
+        full_file <- paste(base_filepath, "/TS_files/", ticker, "1minuteTopStudies.csv", sep = "")
         full <- read.csv(paste(sep = "", full_file), header = TRUE, sep = ",", quote = "\"", dec = ".", fill = TRUE)
         Date = NULL
         temp <- data.frame(subset(full, Date==day))
         
         # read base differences file into data frame
-        baseline_file <- paste(base_filepath, "base_files/", ticker, "_base.csv", sep="")
+        baseline_file <- paste(base_filepath, "/base_files/", ticker, "_base.csv", sep="")
         base_diff <- read.csv(baseline_file, header = TRUE, sep = ",", quote = "\"", dec = ".", fill = TRUE)
         temp_base <- data.frame(subset(base_diff, Date==day))
         
@@ -44,7 +46,7 @@ mach.QA <-
           # creates the query and a dataframe named with the ticker_indicator, for example ibm_sma
           times <- gsub(":", "", gsub("-", "", gsub(" ", "_", Sys.time())))
           query <- paste(ticker, " | ", ind, "(12)")
-          mach_q <- addRow(query, includeData=T, startDate = day, endDate = day)
+          mach_q <- addRow(query, includeData=T, startDate = day, endDate = day, updateModel = F)
           tick_indi <- paste(ticker, "_", ind, "_", day, "_", times, sep = "")
             
           ## this creates CSV files, in case they are desired
@@ -72,8 +74,12 @@ mach.QA <-
           mach_q$base_diff <- temp_base[,(n + 2)]
           
           # calculate difference between current and base difference
+          new_diff = NULL
           suppressWarnings(mach_q$new_diff <- as.numeric(mach_q[,5]) - as.numeric(mach_q[,4]))
           mach_q[,'new_diff'] <- round(mach_q[,'new_diff'],4)
+          
+          # Count number of times each result occurs
+          mach_q_num <- count(mach_q, 'new_diff')
           
           #assign new dataframe to object named with ticker, day, timestamp
           assign(tick_indi, mach_q)
@@ -82,7 +88,16 @@ mach.QA <-
           filename <- paste(tick_indi, ".csv", sep = "")
           write.csv(as.data.frame(mach_q), file=paste(file_path, filename, sep = ""))
           
-          # View the dataframe for each query
-          View(count(mach_q, 'new_diff'), title = query)
+          # Print results for each query
+          sub <- subset(mach_q_num, new_diff == 0)$freq
+          if ( sub != 350 )
+          {
+            print("")
+            print(paste("Results for ", toupper(ind), sep = ""))
+            print(as.data.frame(mach_q_num))
+            print(paste("(Full results in '", file_path, filename, "')", sep = ""))
+          } else {
+            print(paste("Results for ", toupper(ind), ": PASS!", sep = ""))
+          }
         }
 }
