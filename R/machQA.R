@@ -5,10 +5,10 @@ mach.Go <-
   function(    
     username = NULL,
     password = NULL,
-    model = NULL)
+    strategy = NULL)
     {
       startSession(username, password)
-      m <- openModel(model)
+      m <- openStrategy(strategy)
 }
 
 # function to run the QA suite on the indicators
@@ -45,8 +45,8 @@ mach.QA <-
           
           # creates the query and a dataframe named with the ticker_indicator, for example ibm_sma
           times <- gsub(":", "", gsub("-", "", gsub(" ", "_", Sys.time())))
-          query <- paste(ticker, " | ", ind, "(12)")
-          mach_q <- addRow(query, includeData=T, startDate = day, endDate = day, updateModel = F)
+          query <- paste(ticker, " -> ", ind, "(12)")
+          mach_q <- addRow(query, includeData=T, startDate = day, endDate = day, updateStrategy = F)
           tick_indi <- paste(ticker, "_", ind, "_", day, "_", times, sep = "")
             
           ## this creates CSV files, in case they are desired
@@ -75,7 +75,7 @@ mach.QA <-
           
           # calculate difference between current and base difference
           new_diff = NULL
-          suppressWarnings(mach_q$new_diff <- as.numeric(mach_q[,5]) - as.numeric(mach_q[,4]))
+          suppressWarnings(mach_q$new_diff <- as.numeric(as.character(mach_q[,5])) - as.numeric(as.character(mach_q[,4])))
           mach_q[,'new_diff'] <- round(mach_q[,'new_diff'],4)
           
           # Count number of times each result occurs

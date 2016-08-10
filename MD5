@@ -1,11 +1,11 @@
-aa097eede1be3514caf070992c72c55b *DESCRIPTION
-f24924b893b6c6f80befd5522301419b *NAMESPACE
-0bcad3fe6aebcad151f60c3adbee6c45 *R/machQA.R
+eea80e2905c4287cb1e3d79e12ec5f02 *DESCRIPTION
+4aef3602dc7156c7ab02bbd71ff8adf1 *NAMESPACE
+e905007e0083b5f0ae5cb699407d5dd2 *R/machQA.R
 2899c3fa3802a61289ba7823b375a2f7 *R/requirePackages.R
-b7ca58a4e456a0b2b582d8d5d897edd4 *R/versions.R
+97e86a9dae86bd0265e0c1bdbfbaeb72 *R/versions.R
 0901ca50d461ec605605ff77b4a7cbc9 *inst/TS_files/ibm1minuteTopStudies.csv
 72d78c5927d657668bc9148a0292b306 *inst/TS_files/spy1minuteTopStudies.csv
-8761a7b556d18d5659c7c9c7d357210c *inst/base_files/ibm_base.csv
+9f7dc76dabe10a8ac89cc91facb7bba8 *inst/base_files/ibm_base.csv
 d83b59fa4b25e6162823f8af072c703f *inst/base_files/spy_base.csv
-928b9f222b3e53d6a31c21ff826de1b9 *man/machina.Go.Rd
+575e98e6894a7bd738c26b26fe7b6fe8 *man/machina.Go.Rd
 9e359c776ffd1255af208af52417e1fa *man/machina.QA.Rd

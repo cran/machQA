@@ -4,13 +4,13 @@
     mach.Go
 }
 \description{
-    This connects to the Machina web service, and opens model.
+    This connects to the Machina web service, and opens strategy.
 }
 \usage{
     mach.Go(    
     username = NULL,
     password = NULL,
-    model = NULL
+    strategy = NULL
 	)
 }
 \arguments{
@@ -20,20 +20,20 @@
 	\item{password}{
 	    Required, your Machina password
 	}
-    \item{model}{
+    \item{strategy}{
         Not required, this will default to default
 	}
 }
 \details{
-    This connects to the Machina web service, and opens model.
+    This connects to the Machina web service, and opens strategy.
 }
 \value{
-    This connects to the Machina web service, and opens model.
+    This connects to the Machina web service, and opens strategy.
 }
 \author{
     Tim Norton
 }
 \examples{
-   # mach.Go(username = "userName", password = "passWord", model = "modelName")
+   # mach.Go(username = "userName", password = "passWord", strategy = "strategyName")
 }
 \keyword{mach}
